@@ -1,16 +1,9 @@
 # calendlyfe
 
-A new Flutter project.
+A simple FE for requester side on a calendly alternative app.
 
-## Getting Started
+run `flutter build web --release` to build the webapp in release mode.
 
-This project is a starting point for a Flutter application.
+then run the server using python `python -m http.server 8000 -d build/web/`
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+An instance of this is running at [calendly.ramansarda.com](https://calendly.ramansarda.com) to test.
