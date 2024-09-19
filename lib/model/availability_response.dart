@@ -1,4 +1,3 @@
-
 class AvailabilityResponse {
   String? userName;
   List<AvailabilityData>? availabilityData;
@@ -26,16 +25,14 @@ class AvailabilityResponse {
   }
 }
 
-
-
 class AvailabilityData {
-  String? date;
+  DateTime? date;
   List<Times>? times;
 
   AvailabilityData({this.date, this.times});
 
   AvailabilityData.fromJson(Map<String, dynamic> json) {
-    date = json['date'];
+    date = DateTime.parse(json['date']);
     if (json['times'] != null) {
       times = <Times>[];
       json['times'].forEach((v) {
@@ -53,27 +50,30 @@ class AvailabilityData {
     return data;
   }
 
-
   static List<AvailabilityData> fromList(List<Map<String, dynamic>> list) {
     return list.map((map) => AvailabilityData.fromJson(map)).toList();
   }
 }
 
 class Times {
-  int? startTime;
-  int? endTime;
+  int? startHour;
+  int? startMin;
+  int? endHour;
+  int? endMin;
 
-  Times({this.startTime, this.endTime});
+  Times({this.startHour, this.startMin, this.endHour, this.endMin});
 
   Times.fromJson(Map<String, dynamic> json) {
-    startTime = json['startTime'];
-    endTime = json['endTime'];
+    startHour = json['startTime'] ~/ 100;
+    startMin = json['startTime'] % 100;
+    endHour = json['endTime'] ~/ 100;
+    endMin = json['endTime'] % 100;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['startTime'] = startTime;
-    data['endTime'] = endTime;
+    data['startTime'] = startHour! * 100 + startMin!;
+    data['endTime'] = endHour! * 100 + endMin!;
     return data;
   }
 }
